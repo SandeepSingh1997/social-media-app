@@ -1,4 +1,4 @@
-import User from "../models/User";
+import User from "../models/User.js";
 
 export const getUser = async (req, res) => {
   try {
@@ -39,7 +39,7 @@ export const addRemoveFriend = async (req, res) => {
     if (!user) {
       return res.status(400).json({ msg: "user not found" });
     }
-    if (user.friends.contains(friendId)) {
+    if (user.friends.includes(friendId)) {
       user.friends = user.friends.filter((userId) => friendId !== userId);
     } else {
       user.friends.push(friendId);

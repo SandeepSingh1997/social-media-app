@@ -13,6 +13,8 @@ import { verifyToken } from "./middlewares/authorization.js";
 
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/user.js";
+import postRoutes from "./routes/post.js";
+import { createPost } from "./controllers/post.js";
 
 /*Configurations*/
 const __filename = fileURLToPath(import.meta.url);
@@ -43,6 +45,9 @@ app.post("/auth/register", upload.single("picture"), register);
 
 app.use("/auth", authRoutes);
 app.use("/users", verifyToken, userRoutes);
+
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
+app.use("/posts", verifyToken, postRoutes);
 
 /*Mongoose setup*/
 const PORT = process.env.PORT || 3001;
