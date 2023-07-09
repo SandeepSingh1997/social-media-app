@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
+
 import {
   Box,
   Button,
@@ -7,19 +10,17 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-
 import { Formik } from "formik";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import Dropzone from "react-dropzone";
+
 import FlexBetween from "../../components/FlexBetween";
 import { setLogin } from "../../state";
 
 const registerSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
+  email: yup.string().email("Invalid email").required("required"),
   password: yup.string().required("required"),
   location: yup.string().required("required"),
   occupation: yup.string().required("required"),
@@ -27,8 +28,8 @@ const registerSchema = yup.object().shape({
 });
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email("invalid email").required("required"),
-  password: yup.string().required("required"),
+  email: yup.string().email("Invalid Email").required("Email is required"),
+  password: yup.string().required("Password is required"),
 });
 
 const initialValueRegister = {
@@ -97,6 +98,7 @@ export default function Form() {
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
+    console.log("clikced");
     if (isLogin) await login(values, onSubmitProps);
     if (isRegister) await register(values, onSubmitProps);
   };
@@ -115,7 +117,7 @@ export default function Form() {
         handleChange,
         handleSubmit,
         setFieldValue,
-        resetFrom,
+        resetForm,
       }) => (
         <form onSubmit={handleSubmit}>
           <Box
@@ -148,7 +150,7 @@ export default function Form() {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.lastName}
-                  name="firstName"
+                  name="lastName"
                   error={Boolean(touched.lastName) && Boolean(errors.lastName)}
                   helperText={touched.lastName && errors.lastName}
                   sx={{ gridColumn: "span 2" }}
@@ -158,7 +160,7 @@ export default function Form() {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.location}
-                  name="firstName"
+                  name="location"
                   error={Boolean(touched.location) && Boolean(errors.location)}
                   helperText={touched.location && errors.location}
                   sx={{ gridColumn: "span 4" }}
@@ -168,7 +170,7 @@ export default function Form() {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.occupation}
-                  name="firstName"
+                  name="occupation"
                   error={
                     Boolean(touched.occupation) && Boolean(errors.occupation)
                   }
@@ -204,7 +206,7 @@ export default function Form() {
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.email}
-              name="firstName"
+              name="email"
               error={Boolean(touched.email) && Boolean(errors.email)}
               helperText={touched.email && errors.email}
               sx={{ gridColumn: "span 4" }}
@@ -215,7 +217,7 @@ export default function Form() {
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.password}
-              name="firstName"
+              name="password"
               error={Boolean(touched.password) && Boolean(errors.password)}
               helperText={touched.password && errors.password}
               sx={{ gridColumn: "span 4" }}
@@ -229,7 +231,7 @@ export default function Form() {
             <Typography
               onClick={() => {
                 setPageType(isLogin ? "register" : "login");
-                resetFrom();
+                resetForm();
               }}
               sx={{
                 "&:hover": {
