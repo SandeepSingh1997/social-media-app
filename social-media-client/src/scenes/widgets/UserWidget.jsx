@@ -23,12 +23,12 @@ export default function UserWidget({ userId, picturePath }) {
   const main = palette.neutral.main;
 
   const getUser = async () => {
-    const data = await axios.get(`http://localhost:3000/users/${userId}`, {
+    const user = await axios.get(`http://localhost:3000/users/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    setUser(data);
+    setUser(user.data);
   };
 
   useEffect(() => {
@@ -48,6 +48,8 @@ export default function UserWidget({ userId, picturePath }) {
     impressions,
     friends,
   } = user;
+
+  console.log(user);
 
   return (
     <WidgetWrapper>

@@ -72,7 +72,7 @@ export default function Form() {
       }
     );
     const savedUser = await savedUserResponse.json();
-    onSubmitProps.resetFrom();
+    onSubmitProps.resetForm();
     if (savedUser) {
       setPageType("login");
     }
@@ -85,7 +85,7 @@ export default function Form() {
       body: JSON.stringify(values),
     });
     const loggedIn = await loggedInResponse.json();
-    onSubmitProps.resetFrom();
+    onSubmitProps.resetForm();
     if (loggedIn) {
       dispatch(
         setLogin({
@@ -98,7 +98,7 @@ export default function Form() {
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
-    console.log("clikced");
+    console.log("clicked");
     if (isLogin) await login(values, onSubmitProps);
     if (isRegister) await register(values, onSubmitProps);
   };
@@ -179,14 +179,13 @@ export default function Form() {
                 />
                 <Box gridColumn="span 4">
                   <Dropzone
-                    accept=".jpg,.jpeg,.png"
                     multiple={false}
                     onDrop={(acceptedFiles) =>
                       setFieldValue("picture", acceptedFiles[0])
                     }
                   >
                     {({ getRootProps, getInputProps }) => (
-                      <Box {...getRootProps}>
+                      <Box {...getRootProps()} sx={{ cursor: "pointer" }}>
                         <input {...getInputProps()} />
                         {!values.picture ? (
                           <p>Add picture here</p>
@@ -225,7 +224,7 @@ export default function Form() {
           </Box>
           {/*Buttons */}
           <Box>
-            <Button fullWidth type="submit">
+            <Button type="submit" fullWidth>
               {isLogin ? "LOGIN" : "REGISTER"}
             </Button>
             <Typography
