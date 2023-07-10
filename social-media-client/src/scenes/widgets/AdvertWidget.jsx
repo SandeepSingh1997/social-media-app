@@ -22,7 +22,7 @@ export default function AdvertWidget() {
       </FlexBetween>
       <Typography>
         Lorem ipsum dolor sit amet consectetur, perferendis delectus sequi amet
-        voluptate soluta!quos porro, quo quod cumque eveniet ipsum.
+        voluptate soluta! quos porro, quo quod cumque eveniet ipsum.
       </Typography>
     </WidgetWrapper>
   );
