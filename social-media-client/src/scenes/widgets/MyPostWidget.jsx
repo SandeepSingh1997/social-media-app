@@ -33,6 +33,7 @@ export default function MyPostWidget({ picturePath }) {
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)");
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
+  const dark = palette.background.default;
 
   const handlePost = async () => {
     const formData = new FormData();
@@ -56,13 +57,20 @@ export default function MyPostWidget({ picturePath }) {
 
   return (
     <WidgetWrapper>
-      <FlexBetween gap="1.5rem">
+      <FlexBetween gap="1rem" m="5px 0px">
         <UserImage image={picturePath} />
         <InputBase
           placeholder="What's on your mind..."
           onChange={(e) => setPost(e.target.value)}
           value={post}
-          sx={{ width: "100%", borderRadius: "2rem" }}
+          sx={{
+            width: "100%",
+            height: "3rem",
+            p: "5px 20px",
+            borderRadius: "2rem",
+            backgroundColor: medium,
+            color: dark,
+          }}
         />
         <FlexBetween>
           {isImage && (
@@ -79,7 +87,7 @@ export default function MyPostWidget({ picturePath }) {
         </FlexBetween>
       </FlexBetween>
       <Divider />
-      <FlexBetween>
+      <FlexBetween m="5px 0px">
         <FlexBetween onClick={() => setIsImage(!isImage)}>
           <ImageOutlined />
           <Typography>Image</Typography>

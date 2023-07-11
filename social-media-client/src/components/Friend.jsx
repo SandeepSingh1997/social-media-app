@@ -36,6 +36,7 @@ export default function Friend({ friendId, name, subtitle, userPicturePath }) {
       <FlexBetween gap="1rem">
         <UserImage image={userPicturePath} />
         <Box
+          sx={{ cursor: "pointer" }}
           onClick={() => {
             navigate(`/profile/${friendId}`);
             // navigate(0)

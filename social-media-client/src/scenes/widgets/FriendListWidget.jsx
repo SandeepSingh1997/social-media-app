@@ -27,8 +27,8 @@ export default function FriendListWidget({ userId }) {
 
   return (
     <WidgetWrapper>
-      <Typography>Friend List</Typography>
-      <Box display="flex" flexDirection="column">
+      <Typography sx={{ fontWeight: "500" }}>Friends</Typography>
+      <Box display="flex" flexDirection="column" m="5px 0px">
         {friends.map((friend) => (
           <Friend
             key={friend._id}
