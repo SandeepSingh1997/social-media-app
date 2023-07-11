@@ -33,7 +33,6 @@ export default function Navbar() {
 
   const user = useSelector((state) => state.user);
   const isNonMobileScreen = useMediaQuery("(min-width:1000px)");
-  console.log("isNonMobile: ", isNonMobileScreen);
 
   const theme = useTheme();
   const neutralLight = theme.palette.neutral.light;

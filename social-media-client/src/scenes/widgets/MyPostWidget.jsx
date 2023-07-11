@@ -1,5 +1,6 @@
 import { useTheme } from "@emotion/react";
 import {
+  Box,
   Button,
   Divider,
   InputBase,
@@ -55,38 +56,44 @@ export default function MyPostWidget({ picturePath }) {
 
   return (
     <WidgetWrapper>
-      <FlexBetween gap="1rem" m="5px 0px">
-        <UserImage image={picturePath} />
-        <InputBase
-          placeholder="What's on your mind..."
-          onChange={(e) => setPost(e.target.value)}
-          value={post}
-          sx={{
-            width: "100%",
-            height: "3rem",
-            p: "5px 20px",
-            borderRadius: "2rem",
-            backgroundColor: medium,
-            color: dark,
-          }}
-        />
-        <FlexBetween>
-          {isImage && (
-            <Box>
-              <Dropzone onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}>
-                {({ getRootProps, getInputProps }) => (
-                  <Box>
-                    <input {...getInputProps()} />
-                  </Box>
-                )}
-              </Dropzone>
-            </Box>
-          )}
+      <Box>
+        <FlexBetween gap="1rem" m="5px 0px">
+          <UserImage image={picturePath} />
+          <InputBase
+            placeholder="What's on your mind..."
+            onChange={(e) => setPost(e.target.value)}
+            value={post}
+            sx={{
+              width: "100%",
+              height: "3rem",
+              p: "5px 20px",
+              borderRadius: "2rem",
+              backgroundColor: medium,
+              color: dark,
+            }}
+          />
         </FlexBetween>
-      </FlexBetween>
+        {isImage && (
+          <Dropzone onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}>
+            {({ getRootProps, getInputProps }) => (
+              <Box
+                {...getRootProps()}
+                width="100%"
+                height="50px"
+                sx={{ border: "1px dashed aqua", borderRadius: "5px" }}
+              >
+                <input {...getInputProps()} />
+              </Box>
+            )}
+          </Dropzone>
+        )}
+      </Box>
       <Divider />
       <FlexBetween m="5px 0px">
-        <FlexBetween onClick={() => setIsImage(!isImage)}>
+        <FlexBetween
+          onClick={() => setIsImage(!isImage)}
+          sx={{ cursor: "pointer" }}
+        >
           <ImageOutlined />
           <Typography>Image</Typography>
         </FlexBetween>
