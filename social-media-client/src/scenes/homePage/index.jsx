@@ -1,4 +1,4 @@
-import { Box, useMediaQuery } from "@mui/material";
+import { Box, Divider, useMediaQuery } from "@mui/material";
 import Navbar from "../navbar";
 import { useSelector } from "react-redux";
 import UserWidget from "../widgets/UserWidget";
@@ -14,7 +14,13 @@ const HomePage = () => {
   return (
     <Box>
       <Navbar />
-      <Box width="100%" display={isNonMobileScreen ? "flex" : "block"}>
+      <Box
+        width="100%"
+        gap="1.5rem"
+        p="1rem"
+        display={isNonMobileScreen ? "flex" : "block"}
+        justifyContent="space-evenly"
+      >
         <Box flexBasis={isNonMobileScreen ? "26%" : undefined}>
           <UserWidget userId={_id} picturePath={picturePath} />
         </Box>
@@ -22,9 +28,10 @@ const HomePage = () => {
           <MyPostWidget picturePath={picturePath} />
           <PostsWidget userId={_id} />
         </Box>
-        <Box>
+        <Box width="25%">
           <AdvertWidget />
-          <FriendListWidget userId={user._id} />
+          <Box height="1rem"></Box>
+          <FriendListWidget userId={_id} />
         </Box>
       </Box>
     </Box>

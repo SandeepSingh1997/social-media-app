@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFriends } from "../../state";
 import { useEffect } from "react";
 import WidgetWrapper from "../../components/WidgetWrapper";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Friend from "../../components/Friend";
 
 export default function FriendListWidget({ userId }) {
