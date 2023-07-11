@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import WidgetWrapper from "../../components/WidgetWrapper";
 import Friend from "../../components/Friend";
@@ -48,23 +48,25 @@ export default function PostWidget({
     dispatch(setPost({ post: updatedPost }));
   };
   return (
-    <WidgetWrapper>
+    <WidgetWrapper m="10px 0px">
       <Friend
         friendId={postUserId}
         name={name}
         subtitle={location}
         userPicturePath={userPicturePath}
       />
-      <Typography>{description}</Typography>
+      <Typography m="5px 0px">{description}</Typography>
       {picturePath && (
         <img
           width="100%"
           height="auto"
           alt="post"
           src={`http://localhost:3000/assets/${picturePath}`}
+          style={{ margin: "5px 0px", borderRadius: "5px" }}
+          crossOrigin="anonymous"
         />
       )}
-      <FlexBetween>
+      <FlexBetween m="5px 0px">
         <FlexBetween>
           <FlexBetween>
             <IconButton onClick={patchLike}>

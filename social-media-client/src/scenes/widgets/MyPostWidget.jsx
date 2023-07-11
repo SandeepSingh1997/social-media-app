@@ -44,11 +44,9 @@ export default function MyPostWidget({ picturePath }) {
       formData.append("picturePath", image.name);
     }
 
-    const response = await axios.post(
-      "http://localhost:3000/posts",
-      { headers: { Authorization: `Bearer ${token}` } },
-      formData
-    );
+    const response = await axios.post("http://localhost:3000/posts", formData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     const posts = response.data;
     dispatch(setPosts({ posts }));
     setImage(null);

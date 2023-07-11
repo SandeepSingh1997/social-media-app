@@ -44,6 +44,7 @@ export default function PostsWidget({ userId, isProfile = false }) {
           description,
           location,
           picturePath,
+          userPicturePath,
           likes,
           comments,
         }) => (
