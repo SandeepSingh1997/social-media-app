@@ -9,8 +9,10 @@ import FlexBetween from "../../components/FlexBetween";
 import UserImage from "../../components/UserImage";
 import { Box, Divider, Typography } from "@mui/material";
 import {
+  Instagram,
   LocationOnOutlined,
   ManageAccountsOutlined,
+  Twitter,
 } from "@mui/icons-material";
 
 export default function UserWidget({ userId, picturePath }) {
@@ -49,19 +51,19 @@ export default function UserWidget({ userId, picturePath }) {
     friends,
   } = user;
 
-  console.log(user);
-
   return (
     <WidgetWrapper>
       {/*First row*/}
       <FlexBetween onClick={() => navigate(`/profile/${userId}`)}>
         <FlexBetween>
           <UserImage image={picturePath} />
-          <Box>
-            <Typography>
+          <Box m="10px 0px 10px 0px">
+            <Typography sx={{ fontWeight: "500" }}>
               {firstName} {lastName}
             </Typography>
-            <Typography>{friends.length} friends</Typography>
+            <Typography>
+              {friends.length} friend{friends.length > 1 ? "s" : null}
+            </Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />
@@ -70,12 +72,12 @@ export default function UserWidget({ userId, picturePath }) {
       <Divider />
 
       {/*Second row*/}
-      <Box>
-        <Box display="flex" alignItems="center">
+      <Box m="10px 0px 10px 0px">
+        <Box display="flex" alignItems="center" m="5px">
           <LocationOnOutlined />
           <Typography>{location}</Typography>
         </Box>
-        <Box display="flex" alignItems="center">
+        <Box display="flex" alignItems="center" m="5px">
           <LocationOnOutlined />
           <Typography>{occupation}</Typography>
         </Box>
@@ -83,27 +85,28 @@ export default function UserWidget({ userId, picturePath }) {
 
       <Divider />
       {/*Third row*/}
-      <Box>
-        <FlexBetween>
-          <Typography>Who's viewed your profile</Typography>
+      <Box m="10px 0px 10px 0px">
+        <FlexBetween m="5px 0px">
+          <Typography>Profile views</Typography>
           <Typography>{viewedProfile}</Typography>
         </FlexBetween>
-        <FlexBetween>
-          <Typography>Impressions of your post</Typography>
+        <FlexBetween m="5px 0px">
+          <Typography>Post impressions</Typography>
           <Typography>{impressions}</Typography>
-        </FlexBetween>
-        <FlexBetween>
-          <Typography>Who's viewed your profile</Typography>
-          <Typography>{viewedProfile}</Typography>
         </FlexBetween>
       </Box>
 
       <Divider />
       {/*Fourth row*/}
-      <Box>
+      <Box m="10px 0px 10px 0px">
         <Typography>Social Profile</Typography>
-        <FlexBetween>
-          <Typography>Twitter</Typography>
+        <FlexBetween m="5px">
+          <Twitter />
+          <Typography>sandeep@twitter</Typography>
+        </FlexBetween>
+        <FlexBetween m="5px">
+          <Instagram />
+          <Typography>singh182</Typography>
         </FlexBetween>
       </Box>
     </WidgetWrapper>

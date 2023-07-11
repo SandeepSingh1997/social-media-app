@@ -16,21 +16,20 @@ const HomePage = () => {
       <Navbar />
       <Box
         width="100%"
-        gap="1.5rem"
-        p="1rem"
+        p="0px 10px"
         display={isNonMobileScreen ? "flex" : "block"}
         justifyContent="space-evenly"
       >
-        <Box flexBasis={isNonMobileScreen ? "26%" : undefined}>
+        <Box m="10px 0px" flexBasis={isNonMobileScreen ? "30%" : undefined}>
           <UserWidget userId={_id} picturePath={picturePath} />
         </Box>
-        <Box>
+        <Box m="10px 0px" flexBasis={isNonMobileScreen ? "40%" : undefined}>
           <MyPostWidget picturePath={picturePath} />
           <PostsWidget userId={_id} />
         </Box>
-        <Box width="25%">
+        <Box flexBasis={isNonMobileScreen ? "26%" : undefined} m="10px 0px">
           <AdvertWidget />
-          <Box height="1rem"></Box>
+          <Box m="10px 0px"></Box>
           <FriendListWidget userId={_id} />
         </Box>
       </Box>
