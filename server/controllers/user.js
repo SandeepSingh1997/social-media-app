@@ -26,7 +26,7 @@ export const getFriends = async (req, res) => {
       })
     );
 
-    res.status(200).json({ friends });
+    res.status(200).json(friends);
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
@@ -53,7 +53,7 @@ export const addRemoveFriend = async (req, res) => {
       })
     );
 
-    res.status(200).json({ friends });
+    res.status(200).json(friends);
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
