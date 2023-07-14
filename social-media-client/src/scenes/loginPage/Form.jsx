@@ -53,7 +53,7 @@ export default function Form() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const isNonMobileScreen = useMediaQuery("(min-width: 600px");
+  const isNonMobileScreen = useMediaQuery("(min-width: 1000px");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
 
@@ -119,10 +119,20 @@ export default function Form() {
         setFieldValue,
         resetForm,
       }) => (
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            width: "50%",
+            display: "flex",
+            width: "100%",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <Box
             display="grid"
             padding="20px"
+            width={isNonMobileScreen ? "50%" : "100%"}
             gap="30px"
             gridTemplateColumns="repeat(4,minmax(0,1fr))"
             sx={{
@@ -143,7 +153,9 @@ export default function Form() {
                     Boolean(touched.firstName) && Boolean(errors.firstName)
                   }
                   helperText={touched.firstName && errors.firstName}
-                  sx={{ gridColumn: "span 2" }}
+                  sx={{
+                    gridColumn: "span 2",
+                  }}
                 />
                 <TextField
                   label="Last Name"
@@ -163,7 +175,9 @@ export default function Form() {
                   name="location"
                   error={Boolean(touched.location) && Boolean(errors.location)}
                   helperText={touched.location && errors.location}
-                  sx={{ gridColumn: "span 4" }}
+                  sx={{
+                    gridColumn: "span 4",
+                  }}
                 />
                 <TextField
                   label="Occupation"
@@ -175,9 +189,15 @@ export default function Form() {
                     Boolean(touched.occupation) && Boolean(errors.occupation)
                   }
                   helperText={touched.occupation && errors.occupation}
-                  sx={{ gridColumn: "span 4" }}
+                  sx={{
+                    gridColumn: "span 4",
+                  }}
                 />
-                <Box gridColumn="span 4">
+                <Box
+                  gridColumn="span 4"
+                  border="1px dashed aqua"
+                  p="5px 5px 5px 10px"
+                >
                   <Dropzone
                     multiple={false}
                     onDrop={(acceptedFiles) =>
@@ -208,7 +228,9 @@ export default function Form() {
               name="email"
               error={Boolean(touched.email) && Boolean(errors.email)}
               helperText={touched.email && errors.email}
-              sx={{ gridColumn: "span 4" }}
+              sx={{
+                gridColumn: "span 4",
+              }}
             />
             <TextField
               label="Password"
@@ -219,11 +241,18 @@ export default function Form() {
               name="password"
               error={Boolean(touched.password) && Boolean(errors.password)}
               helperText={touched.password && errors.password}
-              sx={{ gridColumn: "span 4" }}
+              sx={{
+                gridColumn: "span 4",
+              }}
             />
           </Box>
           {/*Buttons */}
-          <Box>
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            gap="5px"
+          >
             <Button type="submit" fullWidth>
               {isLogin ? "LOGIN" : "REGISTER"}
             </Button>
@@ -233,6 +262,7 @@ export default function Form() {
                 resetForm();
               }}
               sx={{
+                height: "40px",
                 "&:hover": {
                   cursor: "pointer",
                   textDecoration: "underline",

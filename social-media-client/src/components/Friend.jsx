@@ -39,7 +39,7 @@ export default function Friend({ friendId, name, subtitle, userPicturePath }) {
           sx={{ cursor: "pointer" }}
           onClick={() => {
             navigate(`/profile/${friendId}`);
-            // navigate(0)
+            navigate(0);
           }}
         >
           <Typography>{name}</Typography>

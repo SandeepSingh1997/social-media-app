@@ -12,6 +12,7 @@ import {
   FavoriteOutlined,
   ShareOutlined,
 } from "@mui/icons-material";
+import { setPost } from "../../state";
 
 export default function PostWidget({
   postId,
@@ -37,9 +38,9 @@ export default function PostWidget({
   const patchLike = async () => {
     const res = axios.patch(
       `http://localhost:3000/posts/${postId}/like`,
-      JSON.stringify({ userId: loggedInUserId }),
+      { userId: loggedInUserId },
       {
-        headers: { Autherization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       }
     );
 

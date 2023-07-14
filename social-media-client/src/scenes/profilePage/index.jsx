@@ -6,17 +6,19 @@ import { useParams } from "react-router-dom";
 import UserWidget from "../widgets/UserWidget";
 import FriendListWidget from "../widgets/FriendListWidget";
 import MyPostWidget from "../widgets/MyPostWidget";
+import Navbar from "../navbar";
 import PostsWidget from "../widgets/PostsWidget";
+import FlexBetween from "../../components/FlexBetween";
 
-const ProfilePage = ({ userId }) => {
+const ProfilePage = () => {
   const [user, setUser] = useState(null);
 
-  const { userid } = useParams();
+  const { userId } = useParams();
   const token = useSelector((state) => state.token);
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)");
 
   const getUser = async () => {
-    const res = await axios.get(`http://localhost:3000/user/${userId}`, {
+    const res = await axios.get(`http://localhost:3000/users/${userId}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     setUser(res.data);
@@ -32,16 +34,21 @@ const ProfilePage = ({ userId }) => {
   return (
     <Box>
       <Navbar />
-      <Box>
-        <Box>
+      <Box
+        width="100%"
+        p="0px 10px"
+        display={isNonMobileScreen ? "flex" : "block"}
+        justifyContent="space-evenly"
+      >
+        <Box m="10px 0px" flexBasis={isNonMobileScreen ? "30%" : undefined}>
           <UserWidget userId={userId} picturePath={user.picturePath} />
-          <Box>
-            <FriendListWidget userId={userId} />
-          </Box>
-          <Box>
-            <MyPostWidget picturePath={user.picturePath} />
-            <PostsWidget userId={userId} isProfile />
-          </Box>
+        </Box>
+        <Box m="10px 0px" flexBasis={isNonMobileScreen ? "40%" : undefined}>
+          <MyPostWidget picturePath={user.picturePath} />
+          <PostsWidget userId={userId} isProfile />
+        </Box>
+        <Box m="10px 0px" flexBasis={isNonMobileScreen ? "27%" : undefined}>
+          <FriendListWidget userId={userId} />
         </Box>
       </Box>
     </Box>
